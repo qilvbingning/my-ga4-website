@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3M6RQTF56"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-E3M6RQTF56');
 </script>
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My GA4 Practice Site：篮球记忆之NBA--詹韦连线</title>
@@ -26,6 +27,94 @@
 </head>
 
 <body background="https://pic.rmb.bdstatic.com/eea4bc9c4cd67a09c69595750e5b8844.jpeg" style="background-size: 50%">
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var videoElements = document.querySelectorAll('video');
+  var likeButton = document.getElementById('likeButton');
+  var commentButton = document.getElementById('commentButton');
+  var shareButton = document.getElementById('shareButton');
+
+  videoElements.forEach(function(video) {
+    var watchedSegments = [];
+    
+    video.addEventListener('play', function() {
+      gtag('event', 'play', {
+        'event_category': 'Videos',
+        'event_label': 'Start Playing',
+        'video_title': video.getAttribute('data-title')
+      });
+    });
+
+    video.addEventListener('pause', function() {
+      gtag('event', 'pause', {
+        'event_category': 'Videos',
+        'event_label': 'Pause',
+        'video_title': video.getAttribute('data-title')
+      });
+    });
+
+    video.addEventListener('ended', function() {
+      gtag('event', 'ended', {
+        'event_category': 'Videos',
+        'event_label': 'Complete Watching',
+        'video_title': video.getAttribute('data-title')
+      });
+    });
+
+    video.addEventListener('timeupdate', function() {
+      var percentageWatched = Math.floor((video.currentTime / video.duration) * 100);
+      [25, 50, 75].forEach(function(segment) {
+        if (percentageWatched >= segment && !watchedSegments.includes(segment)) {
+          watchedSegments.push(segment);
+          gtag('event', 'progress', {
+            'event_category': 'Videos',
+            'event_label': `Watched ${segment}%`,
+            'video_title': video.getAttribute('data-title')
+          });
+        }
+      });
+    });
+  });
+
+  // Like button event monitoring
+  if (likeButton) {
+    likeButton.addEventListener('click', function() {
+      var video = document.querySelector('video[playing="true"]'); // 假设您有某种方式标记当前正在播放的视频
+      gtag('event', 'like', {
+        'event_category': 'Interaction',
+        'event_label': 'Like Video',
+        'video_title': video ? video.getAttribute('data-title') : 'Unknown'
+      });
+    });
+  }
+
+  // Comment button event listening
+  if (commentButton) {
+    commentButton.addEventListener('click', function() {
+      var video = document.querySelector('video[playing="true"]');
+      gtag('event', 'comment', {
+        'event_category': 'Interaction',
+        'event_label': 'Comment on Video',
+        'video_title': video ? video.getAttribute('data-title') : 'Unknown'
+      });
+    });
+  }
+
+  // Share button event listening
+  if (shareButton) {
+    shareButton.addEventListener('click', function() {
+      var video = document.querySelector('video[playing="true"]');
+      gtag('event', 'share', {
+        'event_category': 'Interaction',
+        'event_label': 'Share Video',
+        'video_title': video ? video.getAttribute('data-title') : 'Unknown'
+      });
+    });
+  }
+});
+</script>
+  
     <h1>Welcome to My GA4 Practice Site</h1>
     <p>This is a simple HTML page to practice deploying GA4.</p>
     <h1>詹韦连线成绝唱！<br>青春记忆美如画！</h1> <br><br><br><br>
