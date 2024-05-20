@@ -17,7 +17,7 @@
 <style type="text/css">
 body {
     font-family: 'Garamond', sans-serif;
-    background-image: url('https://pic.rmb.bdstatic.com/eea4bc9c4cd67a09c69595750e5b8844.jpeg');
+    background-image: url('https://www.publicdomainpictures.net/pictures/320000/nahled/basketball-background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -69,9 +69,14 @@ audio, video {
     max-width: 800px;
 }
 
-button {
-    display: block;
+.button-container {
+    display: flex;
+    justify-content: center;
     margin: 1em auto;
+}
+
+button {
+    margin: 0 1em;
     padding: 1em;
     font-size: 1.2em;
     color: #fff;
@@ -108,6 +113,12 @@ button:hover {
     <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F2866858203%2F640.jpg&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1656688411&t=435080ed6979fa9a278b7a70da9202de">
 
     <video id="myVideo" src="https://qilvbingning.github.io/my-ga4-website/詹韦连线.mp4" controls></video>
+
+    <div class="button-container">
+        <button id="likeButton">Like</button>
+        <button id="commentButton">Comment</button>
+        <button id="shareButton">Share</button>
+    </div>
 
     <script>
     // Track video events
@@ -183,10 +194,6 @@ button:hover {
     });
     </script>
 
-    <!-- Add buttons for like, comment, and share -->
-    <button id="likeButton">Like</button>
-    <button id="commentButton">Comment</button>
-    <button id="shareButton">Share</button>
-
 </body>
 </html>
+
