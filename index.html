@@ -159,7 +159,27 @@ button:hover {
             });
         }
     });
-
+     
+    // Track fast forward and rewind
+var lastTime = 0;
+video.addEventListener('seeking', function() {
+    var currentTime = video.currentTime;
+    if (currentTime > lastTime) {
+        gtag('event', 'fast_forward', {
+            'event_category': 'Video',
+            'event_label': 'Fast Forward',
+            'value': currentTime - lastTime
+        });
+    } else {
+        gtag('event', 'rewind', {
+            'event_category': 'Video',
+            'event_label': 'Rewind',
+            'value': lastTime - currentTime
+        });
+    }
+    lastTime = currentTime;
+});
+      
     // Track button interactions
     document.getElementById('likeButton').addEventListener('click', function() {
         gtag('event', 'like', {
